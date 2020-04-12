@@ -9,5 +9,6 @@ class AddColumnsToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :city, :string
     add_column :users, :salary, :integer
     add_column :users, :points, :integer
+    add_reference :users, :business, foreign_key: true
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_183613) do
+ActiveRecord::Schema.define(version: 2020_04_12_195534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,19 @@ ActiveRecord::Schema.define(version: 2020_04_12_183613) do
     t.string "name"
     t.string "description"
     t.bigint "user_id"
+    t.bigint "forum_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["forum_id"], name: "index_categories_on_forum_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "departments", force: :cascade do |t|
     t.string "name"
+    t.bigint "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_departments_on_business_id"
   end
 
   create_table "forums", force: :cascade do |t|
@@ -47,18 +51,59 @@ ActiveRecord::Schema.define(version: 2020_04_12_183613) do
     t.string "title"
     t.text "body"
     t.bigint "category_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "proyects", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "user_id"
+    t.bigint "department_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_proyects_on_department_id"
+    t.index ["user_id"], name: "index_proyects_on_user_id"
   end
 
   create_table "replies", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.bigint "post_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_replies_on_post_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.boolean "completed", default: false
+    t.integer "progress", default: 0
+    t.boolean "started", default: false
+    t.string "title"
+    t.text "body"
+    t.bigint "proyect_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proyect_id"], name: "index_tasks_on_proyect_id"
+  end
+
+  create_table "userposts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "userproyects", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "proyect_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proyect_id"], name: "index_userproyects_on_proyect_id"
+    t.index ["user_id"], name: "index_userproyects_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,15 +123,38 @@ ActiveRecord::Schema.define(version: 2020_04_12_183613) do
     t.string "city"
     t.integer "salary"
     t.integer "points"
-    t.bigint "departments_id"
-    t.index ["departments_id"], name: "index_users_on_departments_id"
+    t.bigint "business_id"
+    t.bigint "department_id"
+    t.index ["business_id"], name: "index_users_on_business_id"
+    t.index ["department_id"], name: "index_users_on_department_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "usertasks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_usertasks_on_task_id"
+    t.index ["user_id"], name: "index_usertasks_on_user_id"
+  end
+
+  add_foreign_key "categories", "forums"
   add_foreign_key "categories", "users"
+  add_foreign_key "departments", "businesses"
   add_foreign_key "forums", "departments"
   add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "users"
+  add_foreign_key "proyects", "departments"
+  add_foreign_key "proyects", "users"
   add_foreign_key "replies", "posts"
-  add_foreign_key "users", "departments", column: "departments_id"
+  add_foreign_key "replies", "users"
+  add_foreign_key "tasks", "proyects"
+  add_foreign_key "userproyects", "proyects"
+  add_foreign_key "userproyects", "users"
+  add_foreign_key "users", "businesses"
+  add_foreign_key "users", "departments"
+  add_foreign_key "usertasks", "tasks"
+  add_foreign_key "usertasks", "users"
 end
