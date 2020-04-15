@@ -6,7 +6,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.boolean :started, default: false
       t.string :title
       t.text :body 
-      t.references :proyect, foreign_key: true
+      t.references :project, foreign_key: true
       t.timestamps
     end
   end

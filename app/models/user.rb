@@ -3,9 +3,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :proyects, through: :userproyects, dependent: :destroy
-  has_many :tasks, through: :usertasks, dependent: :destroy
-  has_many :posts, through: :userposts, dependent: :destroy
+
+  # Projects
+  has_many :owned_projects, class_name: 'Project', foreign_key: 'administrator_id', dependent: :destroy
+  has_and_belongs_to_many :projects
+
+  # Posts
+  has_many :owned_posts, class_name: 'Post', foreign_key: 'administrator_id', dependent: :destroy
+  has_and_belongs_to_many :posts
+
+  # Tasks
+  has_many :owned_tasks, class_name: 'Task', foreign_key: 'administrator_id', dependent: :destroy
+  has_and_belongs_to_many :tasks
+
   has_many :replies, through: :posts, dependent: :destroy
   has_many :categories, dependent: :destroy
   belongs_to :business, dependent: :destroy

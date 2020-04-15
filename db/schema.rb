@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_195534) do
+ActiveRecord::Schema.define(version: 2020_04_13_191524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2020_04_12_195534) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "administrator_id"
+    t.index ["administrator_id"], name: "index_businesses_on_administrator_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_04_12_195534) do
     t.bigint "forum_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "administrator_id"
+    t.index ["administrator_id"], name: "index_categories_on_administrator_id"
     t.index ["forum_id"], name: "index_categories_on_forum_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
@@ -37,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_04_12_195534) do
     t.bigint "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "administrator_id"
+    t.index ["administrator_id"], name: "index_departments_on_administrator_id"
     t.index ["business_id"], name: "index_departments_on_business_id"
   end
 
@@ -54,19 +60,29 @@ ActiveRecord::Schema.define(version: 2020_04_12_195534) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "administrator_id"
+    t.index ["administrator_id"], name: "index_posts_on_administrator_id"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "proyects", force: :cascade do |t|
+  create_table "posts_users", id: false, force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
     t.string "title"
-    t.text "description"
-    t.bigint "user_id"
-    t.bigint "department_id"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_proyects_on_department_id"
-    t.index ["user_id"], name: "index_proyects_on_user_id"
+    t.bigint "administrator_id"
+    t.index ["administrator_id"], name: "index_projects_on_administrator_id"
+  end
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "replies", force: :cascade do |t|
@@ -86,24 +102,17 @@ ActiveRecord::Schema.define(version: 2020_04_12_195534) do
     t.boolean "started", default: false
     t.string "title"
     t.text "body"
-    t.bigint "proyect_id"
+    t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["proyect_id"], name: "index_tasks_on_proyect_id"
+    t.bigint "administrator_id"
+    t.index ["administrator_id"], name: "index_tasks_on_administrator_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
-  create_table "userposts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "userproyects", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "proyect_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["proyect_id"], name: "index_userproyects_on_proyect_id"
-    t.index ["user_id"], name: "index_userproyects_on_user_id"
+  create_table "tasks_users", id: false, force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -131,30 +140,21 @@ ActiveRecord::Schema.define(version: 2020_04_12_195534) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "usertasks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_usertasks_on_task_id"
-    t.index ["user_id"], name: "index_usertasks_on_user_id"
-  end
-
+  add_foreign_key "businesses", "users", column: "administrator_id"
   add_foreign_key "categories", "forums"
   add_foreign_key "categories", "users"
+  add_foreign_key "categories", "users", column: "administrator_id"
   add_foreign_key "departments", "businesses"
+  add_foreign_key "departments", "users", column: "administrator_id"
   add_foreign_key "forums", "departments"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
-  add_foreign_key "proyects", "departments"
-  add_foreign_key "proyects", "users"
+  add_foreign_key "posts", "users", column: "administrator_id"
+  add_foreign_key "projects", "users", column: "administrator_id"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"
-  add_foreign_key "tasks", "proyects"
-  add_foreign_key "userproyects", "proyects"
-  add_foreign_key "userproyects", "users"
+  add_foreign_key "tasks", "projects"
+  add_foreign_key "tasks", "users", column: "administrator_id"
   add_foreign_key "users", "businesses"
   add_foreign_key "users", "departments"
-  add_foreign_key "usertasks", "tasks"
-  add_foreign_key "usertasks", "users"
 end
