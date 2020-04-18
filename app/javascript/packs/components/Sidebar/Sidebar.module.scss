@@ -1,9 +1,11 @@
+@import '../css-variables/colors.scss';
+
 .Sidebar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  background-color: #24334A;
+  background-color: $base-color;
   width: 300px;
   height: 100vh;
   position: relative;
@@ -14,6 +16,9 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    a {
+      text-decoration: none;
+    }
     li:not(.Active) {
       color: #ebecef;
       display: flex;
@@ -21,15 +26,22 @@
       justify-content: flex-start;
       padding: 10px 0;
       padding-left: 1rem;
-      background: #2B3C58;
+      background: $base-color-light-1;
+      border-top: 0.3px solid $base-color-light-1;
+      border-bottom: 0.3px solid $base-color-light-1;
+      &:hover {
+        background: $base-color-light-2;
+        border-top: 0.3px solid $white-border;
+        border-bottom: 0.3px solid $white-border;
+      }
     }
     li:first-child {
       margin-top: 0;
     }
-    li a:not(.Active){
+    li span:not(.Active){
       font-weight: normal;
       text-decoration: none;
-      color: rgba(255, 255, 255, .65);
+      color: $white-link;
       margin-left: 1rem;
     }  
   }
@@ -41,16 +53,18 @@
   justify-content: flex-start;
   padding: 10px 0;
   padding-left: 1rem;
-  background: #3E5678;
-  border-top: 0.3px solid rgba(255, 255, 255, .65);
-  border-bottom: 0.3px solid rgba(255, 255, 255, .65);
-  color: rgba(255, 255, 255, .90);
-  box-shadow: 0px 10px 10px rgb(255, 255, 255);
-  a {
-    color: white;
+  background: $base-color-light-3;
+  border-top: 0.3px solid $white-link;
+  border-bottom: 0.3px solid $white-link;
+  color: $white;
+  span {
+    color: $white !important;
     font-weight: normal;
     text-decoration: none;
     margin-left: 1rem;
+  }
+  i {
+    color: $white !important;
   }
 }
 
@@ -68,6 +82,6 @@
   margin: 0 auto;
   border-radius: 50%;
   width: 100px;
-  border: 2px solid white;
+  border: 2px solid $white;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }

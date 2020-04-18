@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import css from './Time.module.scss';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 class Time extends Component {
   render () {
     return (
-      <h1>Hello Time</h1>
+      <Sidebar view='time' />
     )
   }
 }

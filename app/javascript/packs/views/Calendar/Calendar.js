@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import css from './Calendar.module.scss';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 class Calendar extends Component {
   render () {
     return (
-      <h1>Hello Calendar</h1>
+      <Sidebar view='calendar' />
     )
   }
 }

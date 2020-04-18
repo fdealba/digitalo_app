@@ -5,7 +5,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 class Dashboard extends Component {
   render () {
     return (
-      <Sidebar/>
+      <Sidebar view='dashboard' />
     )
   }
 }
