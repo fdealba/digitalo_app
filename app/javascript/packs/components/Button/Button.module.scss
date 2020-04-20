@@ -1,0 +1,61 @@
+@import '../../components/css-variables/colors.scss';
+
+.Primary {
+  width: fit-content;
+  padding: .5em 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0,0,0, .2);
+  background: $primary;
+  color: $white;
+}
+
+.Secondary {
+  width: fit-content;
+  padding: .5em 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0,0,0, .2);
+  background: $secondary;
+  color: $white;
+}
+
+.Success {
+  width: fit-content;
+  padding: .5em 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0,0,0, .2);
+  background: $success;
+  color: $white;
+}
+
+.Warning {
+  width: fit-content;
+  padding: .5em 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0,0,0, .2);
+  background: $warning;
+  color: $white;
+}
+
+.Danger {
+  width: fit-content;
+  padding: .5em 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0,0,0, .2);
+  background: $danger;
+  color: $white;
+}
