@@ -1,0 +1,25 @@
+@import '../../components/css-variables/colors.scss';
+
+.Nav {
+  display: flex;
+  margin: 1.5rem 0;
+  margin-left: 1.5rem;
+  p {
+    margin: 0;
+    padding: 0rem 1.5rem;
+    color: $black-text;
+    border-bottom: 3px solid $black-light-border-1;
+    color: $black-text;
+    letter-spacing: -.5px;
+    cursor: pointer;
+  }
+  p:hover:not(.Active) {
+    border-bottom: 3px solid $black-light-border;
+    color: $black-text-hover;
+  }
+}
+
+.Active {
+  border-bottom: 3px solid $blue-link !important;
+  color: $blue-link !important;
+}

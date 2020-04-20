@@ -6,7 +6,8 @@
   align-items: flex-start;
   justify-content: center;
   background-color: $base-color;
-  width: 300px;
+  min-width: 300px;
+  z-index: 9990;
   height: 100vh;
   position: relative;
   overflow: hidden;
