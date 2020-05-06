@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_174835) do
+ActiveRecord::Schema.define(version: 2020_05_06_161202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(version: 2020_04_20_174835) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "department_id"
     t.bigint "administrator_id"
     t.index ["administrator_id"], name: "index_projects_on_administrator_id"
+    t.index ["department_id"], name: "index_projects_on_department_id"
   end
 
   create_table "projects_users", id: false, force: :cascade do |t|
@@ -115,17 +117,16 @@ ActiveRecord::Schema.define(version: 2020_04_20_174835) do
     t.bigint "user_id", null: false
   end
 
-  create_table "timesheets", force: :cascade do |t|
-    t.date "date"
-    t.date "time_from"
-    t.date "time_to"
-    t.text "comment"
-    t.string "type"
-    t.date "time_worked"
+  create_table "timers", force: :cascade do |t|
+    t.integer "seconds", default: 0
+    t.integer "minutes", default: 0
+    t.integer "hours", default: 0
+    t.datetime "stop_time"
+    t.boolean "running", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_timesheets_on_user_id"
+    t.index ["user_id"], name: "index_timers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -163,12 +164,13 @@ ActiveRecord::Schema.define(version: 2020_04_20_174835) do
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
   add_foreign_key "posts", "users", column: "administrator_id"
+  add_foreign_key "projects", "departments"
   add_foreign_key "projects", "users", column: "administrator_id"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users", column: "administrator_id"
-  add_foreign_key "timesheets", "users"
+  add_foreign_key "timers", "users"
   add_foreign_key "users", "businesses"
   add_foreign_key "users", "departments"
 end

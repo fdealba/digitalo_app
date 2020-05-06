@@ -21,10 +21,16 @@ Business.destroy_all
 
 puts "Creating businesses..."
 # Digitalo Businesses
+karim = User.new(
+  name: "Karim",
+  email: "karim@lewagon.com",
+  password: "123456",
+)
 
 apple = Business.new(
   name: "Apple",
 )
+apple.administrator = karim
 # karim.remote_photo_url = "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/qqtccckpyj555oibt676.jpg"
 apple.save
 
@@ -62,6 +68,7 @@ puts "Attach project and business..."
 # Apple Project
 [frontend, backend, operations, sales, marketing].each do |dpto|
   dpto.business = business1
+  dpto.administrator = karim
 end
 
 
@@ -77,11 +84,7 @@ puts "Creating users..."
 
 # Digitalo Users
 
-karim = User.new(
-  name: "Karim",
-  email: "karim@lewagon.com",
-  password: "123456",
-)
+
 karim.business = business1
 karim.department = frontend
 karim.save
@@ -162,35 +165,30 @@ business1.save
 # Create Project
 
 project1 = Project.new(title: 'title', description: 'sample description')
-project1.business = business1
 project1.department = frontend
 project1.administrator = karim
 project1.users << [karim]
 project1.save
 
 project2 = Project.new(title: 'title', description: 'sample description')
-project2.business = business1
 project2.department = backend
 project2.administrator = bitna
 project2.users << [bitna]
 project2.save
 
 project3 = Project.new(title: 'title', description: 'sample description')
-project3.business = business1
 project3.department = operations
 project3.administrator = fanny
 project3.users << [fanny]
 project3.save
 
 project4 = Project.new(title: 'title', description: 'sample description')
-project4.business = business1
 project4.department = sales
 project4.administrator = carol
 project4.users << [carol]
 project4.save
 
 project5 = Project.new(title: 'title', description: 'sample description')
-project5.business = business1
 project5.department = marketing
 project5.administrator = felipe
 project5.users << [felipe]
@@ -202,26 +200,31 @@ project5.save
 
 task1 = Task.new(title: 'task1', body: 'body')
 task1.project = project1
+task1.administrator = bitna
 task1.users << [karim]
 task1.save
 
 task2 = Task.new(title: 'task2', body: 'body')
 task2.project = project2
+task2.administrator = bitna
 task2.users << [bitna]
 task2.save
 
 task3 = Task.new(title: 'task3', body: 'body')
 task3.project = project3
+task3.administrator = bitna
 task3.users << [fanny]
 task3.save
 
 task4 = Task.new(title: 'task4', body: 'body')
 task4.project = project4
+task4.administrator = bitna
 task4.users << [carol]
 task4.save
 
 task5 = Task.new(title: 'task5', body: 'body')
 task5.project = project5
+task5.administrator = bitna
 task5.users << [felipe]
 task5.save
 

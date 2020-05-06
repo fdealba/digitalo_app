@@ -18,15 +18,19 @@
     padding: 0;
     width: 100%;
     a {
+      padding: 10px 0;
+      padding-left: 1rem;
+    }
+    a:hover {
       text-decoration: none;
     }
-    li:not(.Active) {
+    a:not(.Active) {
+      text-decoration: none;
+      width: 100%;
       color: #ebecef;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      padding: 10px 0;
-      padding-left: 1rem;
       background: $base-color-light-1;
       border-top: 0.3px solid $base-color-light-1;
       border-bottom: 0.3px solid $base-color-light-1;
@@ -36,10 +40,10 @@
         border-bottom: 0.3px solid $white-border;
       }
     }
-    li:first-child {
+    a:first-child {
       margin-top: 0;
     }
-    li span:not(.Active){
+    a span:not(.Active), i{
       font-weight: normal;
       text-decoration: none;
       color: $white-link;
@@ -53,7 +57,6 @@
   align-items: center;
   justify-content: flex-start;
   padding: 10px 0;
-  padding-left: 1rem;
   background: $base-color-light-3;
   border-top: 0.3px solid $white-link;
   border-bottom: 0.3px solid $white-link;

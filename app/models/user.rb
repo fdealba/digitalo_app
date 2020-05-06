@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   has_many :replies, through: :posts, dependent: :destroy
   has_many :categories, dependent: :destroy
+  has_many :timers
   belongs_to :business, dependent: :destroy
   belongs_to :department, dependent: :destroy
 end

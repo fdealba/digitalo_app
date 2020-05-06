@@ -6,5 +6,6 @@ class CreateDepartments < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_reference :users, :department, foreign_key: true
+    add_reference :projects, :department, foreign_key: true
   end
 end
