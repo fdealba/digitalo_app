@@ -10,6 +10,7 @@
   box-shadow: 1px 1px 10px rgba(0,0,0, .2);
   background: $primary;
   color: $white;
+  cursor: pointer;
 }
 
 .Secondary {
@@ -22,6 +23,7 @@
   box-shadow: 1px 1px 10px rgba(0,0,0, .2);
   background: $secondary;
   color: $white;
+  cursor: pointer;
 }
 
 .Success {
@@ -34,6 +36,7 @@
   box-shadow: 1px 1px 10px rgba(0,0,0, .2);
   background: $success;
   color: $white;
+  cursor: pointer;
 }
 
 .Warning {
@@ -46,6 +49,7 @@
   box-shadow: 1px 1px 10px rgba(0,0,0, .2);
   background: $warning;
   color: $white;
+  cursor: pointer;
 }
 
 .Danger {
@@ -58,4 +62,5 @@
   box-shadow: 1px 1px 10px rgba(0,0,0, .2);
   background: $danger;
   color: $white;
+  cursor: pointer;
 }

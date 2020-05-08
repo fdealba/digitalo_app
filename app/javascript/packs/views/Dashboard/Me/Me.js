@@ -27,7 +27,6 @@ class Me extends Component {
     return (
       <Fragment>
         <MainStats statsData={statsData}/>
-        <Timer/>
       </Fragment>
     )
   }

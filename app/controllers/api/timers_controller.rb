@@ -1,7 +1,13 @@
 module API
   class TimersController < ApplicationController
     def load
-      render json: { data: 'is there any data for timers?'}
+      render json: { 
+        timer: {
+        seconds: 0,
+        minutes: 0,
+        hours: 0,
+        running: false
+      }}
     end
 
     def start
@@ -9,7 +15,7 @@ module API
     end
 
     def stop
-      render json: { data: 'stoppppptimerrr'}
+      render json: { seconds: params[:seconds], minutes: params[:minutes], hours: params[:hours] }
     end
 
   end

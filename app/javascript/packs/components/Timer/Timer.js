@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TimerMain } from './Timer.module.scss';
+import classes from './Timer.module.scss';
 import Button from '../UI/Button/Button';
 
 import { connect } from 'react-redux';
@@ -15,39 +15,42 @@ class Timer extends Component {
     return time < 10 ? `0${time}` : time;
   }
 
+  startTimerCounter = () => {
+    this.props.onStartBackendTimer();
+    this.interval = setInterval(() => {
+      let propsData = Object.assign({}, this.props);
+
+      propsData.seconds++;
+      if (propsData.seconds === 60) { 
+        propsData.minutes += 1;
+        propsData.seconds = 0;
+        if (propsData.minutes === 60) {
+          propsData.hours += 1;
+          propsData.minutes = 0;
+        }
+      }
+
+      this.props.onUpdateTimer({
+        seconds: propsData.seconds, 
+        minutes: propsData.minutes, 
+        hours: propsData.hours
+      });
+    }, 1000);
+  }
+
+  stopTimerCounter = () => {
+    clearInterval(this.interval);
+    this.props.onStopBackendTimer(this.props);
+  }
+
   toggleTimer = () => {
-    // ACA PASE LO QUE PASE SE LE TIENE QUE AVISAR AL BACK Q VOS TOCASTE START/STOP PARA SABER SI ESTAS LABURANDO O NO
-    this.props.timer.running ? this.props.onStopTimer() : this.props.onStartTimer();
-
-    // if (!this.state.running) {
-    //   this.setState({ running: true, buttonClass: 'danger' });
-    //   this.interval = setInterval(() => {
-    //     let stateCopy = Object.assign({}, this.state);
-
-    //     stateCopy.seconds++;
-    //     if (stateCopy.seconds === 60) { 
-    //       stateCopy.minutes += 1;
-    //       stateCopy.seconds = 0;
-    //       if (stateCopy.minutes === 60) {
-    //         stateCopy.hours += 1;
-    //         stateCopy.minutes = 0;
-    //       }
-    //     }
-
-    //     this.setState({ 
-    //       seconds: stateCopy.seconds, 
-    //       minutes: stateCopy.minutes, 
-    //       hours: stateCopy.hours
-    //     })
-    //   }, 1000);
-    // } else {
-    //   clearInterval(this.interval);
-    //   this.setState({ running: false, buttonClass: 'primary' });
-    // }
+    this.props.running ?
+    this.props.onStopTimer() && this.stopTimerCounter() :
+    this.props.onStartTimer() && this.startTimerCounter();
   }
 
   render () {
-    const { seconds, minutes, hours, running } = this.props.timer;
+    const { seconds, minutes, hours, running } = this.props;
     const formatedHours = this.formatTime(hours);
     const formatedMinutes = this.formatTime(minutes);
     const formatedSeconds = this.formatTime(seconds);
@@ -56,9 +59,9 @@ class Timer extends Component {
     const buttonClass = running ? 'danger' : 'primary';
     const innerText = running ? 'Stop' : 'Start';
     return (
-    <div className={TimerMain}>
+    <div className={classes.Timer}>
       <p>{time}</p>
-        <Button innerText={innerText} callback={this.toggleTimer} activeClass={buttonClass}/>
+        <Button callback={this.toggleTimer} activeClass={buttonClass}>{innerText}</Button>
     </div>
     );
   }
@@ -67,7 +70,10 @@ class Timer extends Component {
 //MAPEAR LAS VARIABLES CON LOS VALORES QUE ESTAN EN EL STORE GENERAL
 const mapStateToProps = state => {
   return{
-    timer: state.timer,
+    seconds: state.timer.seconds,
+    minutes: state.timer.minutes,
+    hours: state.timer.hours,
+    running: state.timer.running,
     error: state.error
   };
 }
@@ -76,7 +82,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     onStartTimer: () => dispatch(timerActions.startTimer()),
+    onStartBackendTimer: () => dispatch(timerActions.startBackendTimer()),
     onStopTimer: () => dispatch(timerActions.stopTimer()),
+    onStopBackendTimer: (state) => dispatch(timerActions.stopBackendTimer(state)),
+    onUpdateTimer: (newValues) => dispatch(timerActions.updateTimer(newValues)),
     onInitTimer: () => dispatch(timerActions.initTimer())
   };
 }

@@ -1,28 +1,25 @@
 import React from 'react';
 import { Primary, Secondary, Warning, Success, Danger } from './Button.module.scss';
 
+const BUTTON_CLASSES = {
+  primary: Primary,
+  secondary: Secondary,
+  warning: Warning,
+  success: Success,
+  danger: Danger
+}
 
 const button = ({ 
-  innerText, callback, activeClass 
+  children, callback, activeClass 
 }) => {
-  let boton = null;
-  let buttonClass = null;
-  if (activeClass === 'primary') buttonClass = Primary;
-  if (activeClass === 'secondary') buttonClass = Secondary;
-  if (activeClass === 'warning') buttonClass = Warning;
-  if (activeClass === 'success') buttonClass = Success;
-  if (activeClass === 'danger') buttonClass = Danger;
+  const buttonClass = BUTTON_CLASSES[`${activeClass}`];
 
-  if (callback) {
-    boton = (<div className={buttonClass} onClick={callback}>
-      {innerText}
-    </div>)
-  } else {
-    boton = (<div className={buttonClass}>
-      {innerText}
-    </div>)
-  }
-  return boton;
+  const button = (
+    <div className={buttonClass} onClick={callback ? callback : ''}>
+      {children}
+    </div>
+  );
+  return button;
 }
 
 export default button;
