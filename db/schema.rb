@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_161202) do
   end
 
   create_table "timers", force: :cascade do |t|
-    t.boolean "running"
+    t.boolean "running", default: true
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { 
-  Sidebar, Logo, ProfilePicture, Active 
+  Sidebar, Logo, ProfilePicture, Active, Logout
 } from './Sidebar.module.scss';
 import {
   BrowserRouter as Router,
@@ -46,14 +46,30 @@ const sidebar = ({
       </li>
     );
   })
+
+  const logout = (
+    <a className={Logout} rel="nofollow" data-method="delete" href="/user/sign_out">
+      <i className="material-icons">exit_to_app</i>
+    </a>
+  );
+
+  const businessLogo = (
+    <img src={logo} className={Logo} alt="Logo"/>
+  );
+
+  const userProfilePicture = (
+    <img src={profilePictureExample} className={ProfilePicture} alt="User Picture"/>
+  );
+
   const html = (
     <div className={Sidebar}>
-      <img src={profilePictureExample} className={ProfilePicture} alt="User Picture"/>
+      {userProfilePicture}
       <ul>
         {links}
       </ul>
       <Timer/>
-      <img src={logo} className={Logo} alt="Logo"/>
+      {logout}
+      {businessLogo}
     </div>
   );
 
