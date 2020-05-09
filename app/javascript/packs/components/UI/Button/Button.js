@@ -1,5 +1,11 @@
 import React from 'react';
-import { Primary, Secondary, Warning, Success, Danger } from './Button.module.scss';
+import { 
+  Primary,
+  Secondary,
+  Warning,
+  Success,
+  Danger
+} from './Button.module.scss';
 
 const BUTTON_CLASSES = {
   primary: Primary,
@@ -12,10 +18,8 @@ const BUTTON_CLASSES = {
 const button = ({ 
   children, callback, activeClass 
 }) => {
-  const buttonClass = BUTTON_CLASSES[`${activeClass}`];
-
   const button = (
-    <div className={buttonClass} onClick={callback ? callback : ''}>
+    <div className={BUTTON_CLASSES[`${activeClass}`]} onClick={callback ? callback : ''}>
       {children}
     </div>
   );

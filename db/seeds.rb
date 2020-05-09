@@ -228,7 +228,11 @@ task5.administrator = bitna
 task5.users << [felipe]
 task5.save
 
-# Assign Users to Tasks
+# Creating and Assigning Timers
+
+timer = Timer.new()
+timer.user = karim;
+timer.save
 
 
 

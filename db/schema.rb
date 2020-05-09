@@ -118,11 +118,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_161202) do
   end
 
   create_table "timers", force: :cascade do |t|
-    t.integer "seconds", default: 0
-    t.integer "minutes", default: 0
-    t.integer "hours", default: 0
-    t.datetime "stop_time"
-    t.boolean "running", default: false
+    t.boolean "running"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

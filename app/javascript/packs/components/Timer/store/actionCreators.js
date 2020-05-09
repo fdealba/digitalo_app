@@ -56,6 +56,7 @@ export const initTimer = () => {
   return dispatch => {
     axios.get('api/load_timer')
       .then( response => {
+        console.log(response);
         dispatch(setTimer(response.data));
       })
       .catch( error => {

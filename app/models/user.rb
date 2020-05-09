@@ -21,4 +21,8 @@ class User < ApplicationRecord
   has_many :timers
   belongs_to :business, dependent: :destroy
   belongs_to :department, dependent: :destroy
+
+  def timers_today
+    self.timers.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+  end
 end

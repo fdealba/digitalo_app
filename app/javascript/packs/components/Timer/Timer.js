@@ -10,13 +10,15 @@ class Timer extends Component {
   componentDidMount() {
     this.props.onInitTimer();
   }
+  
+  componentDidUpdate (newState) {
+  }
 
   formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
   }
 
   startTimerCounter = () => {
-    this.props.onStartBackendTimer();
     this.interval = setInterval(() => {
       let propsData = Object.assign({}, this.props);
 
@@ -38,16 +40,17 @@ class Timer extends Component {
     }, 1000);
   }
 
-  stopTimerCounter = () => {
-    clearInterval(this.interval);
-    this.props.onStopBackendTimer(this.props);
-  }
-
   toggleTimer = () => {
-    this.props.running ?
-    this.props.onStopTimer() && this.stopTimerCounter() :
-    this.props.onStartTimer() && this.startTimerCounter();
-  }
+    if (this.props.running) {
+      this.props.onStopTimer();
+      this.props.onStopBackendTimer();
+      clearInterval(this.interval);
+    } else {
+      this.props.onStartTimer();
+      this.startTimerCounter();
+      this.props.onStartBackendTimer();
+    };
+  };
 
   render () {
     const { seconds, minutes, hours, running } = this.props;
@@ -58,6 +61,7 @@ class Timer extends Component {
     const time = `${formatedHours}:${formatedMinutes}:${formatedSeconds}`;
     const buttonClass = running ? 'danger' : 'primary';
     const innerText = running ? 'Stop' : 'Start';
+    if (!this.interval && running) this.startTimerCounter();
     return (
     <div className={classes.Timer}>
       <p>{time}</p>

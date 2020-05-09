@@ -21,14 +21,14 @@ const ICONS = {
   alerts: 'notification_important'
 };
 
-const CAPITALIZED_LINKS = {
+const LINKS = {
   dashboard: 'Dashboard',
   tasks: 'Tasks',
   calendar: 'Calendar',
   office: 'Office',
   time: 'Time',
   alerts: 'Alerts'
-}
+};
 
 const NAVLINKS = ['dashboard', 'tasks', 'calendar', 'office', 'time', 'alerts'];
 
@@ -41,7 +41,7 @@ const sidebar = ({
       <li key={link}>
         <NavLink to={`/${link === 'dashboard' ? '' : link}`} exact activeClassName={Active} >
           <i className="material-icons">{`${ICONS[link]}`}</i>
-          <span>{`${CAPITALIZED_LINKS[link]}`}</span>
+          <span>{`${LINKS[link]}`}</span>
         </NavLink>
       </li>
     );
