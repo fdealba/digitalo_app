@@ -1,10 +1,34 @@
 // Define variables for your color scheme
 
-// For example:
-$red: #FD1015;
-$blue: #167FFB;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+// Base colors:
+$base-color: #24334A;
+$base-color-light-1: #2B3C58;
+$base-color-light-2: #344864;
+$base-color-light-3: #3E5678;
+
+
+// Whites
+$white: rgba(255, 255, 255, .9);
+$white-link: rgba(255, 255, 255, .65);
+$white-border: rgba(255, 255, 255, .15);
+
+//Blacks
+$black: rgba(0, 0, 0, .85);
+$black-light-border: rgba(0, 0, 0, .06);
+$black-light-border-1: rgba(0, 0, 0, .03);
+
+
+// Text
+$black-text: rgba(0, 0, 0, .55);
+$black-text-hover: rgba(0, 0, 0, .75);
+
+
+// Links
+$blue-link: #16a0fb;
+
+// Colors
+$primary: #16a0fb;
+$secondary: #041D2E;
+$success: #59FA0A;
+$warning: #FA9C16;
+$danger: #FA312F;

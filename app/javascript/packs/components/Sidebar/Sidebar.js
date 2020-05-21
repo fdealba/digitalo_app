@@ -8,7 +8,7 @@ import {
   Route,
   NavLink
 } from "react-router-dom";
-import logo from 'images/logo/white-color/white-color.svg';
+import logo from 'images/logo/white-logo.svg';
 import profilePictureExample from 'images/test-pics/profile-picture.jpg';
 import Timer from '../Timer/Timer';
 
