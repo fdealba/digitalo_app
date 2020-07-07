@@ -1,0 +1,11 @@
+@import '../../components/css-variables/colors.scss';
+
+.TimeContainer {
+  margin-top: 1.5rem;
+  flex-grow: 1;
+  overflow: auto;
+  h2 {
+    color: $black;
+    margin-left: 1.5rem;
+  }
+}

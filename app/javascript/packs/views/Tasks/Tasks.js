@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import css from './Tasks.module.scss';
+import { TasksContainer } from './Tasks.module.scss';
 
 class Tasks extends Component {
   render () {
     return (
-      <h1>Tasks</h1>
+      <div className={TasksContainer}>
+        <h2>Tasks</h2>
+      </div>
     )
   }
 }

@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import css from './Office.module.scss';
+import { OfficeContainer } from './Office.module.scss';
 
 class Office extends Component {
   render () {
     return (
-      <h1>Office</h1>
+      <div className={OfficeContainer}>
+        <h2>Office</h2>
+      </div>
     )
   }
 }
