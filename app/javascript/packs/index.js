@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 
 // Reducers
 import timerReducer from './components/Timer/store/reducer';
+import dashboardReducer from './views/Dashboard/store/reducer'
 
 // Axios
 import axios from 'axios';
@@ -20,7 +21,8 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  timer: timerReducer
+  timer: timerReducer,
+  dashboard: dashboardReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
