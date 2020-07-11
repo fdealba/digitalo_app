@@ -2,10 +2,10 @@
 
 .TasksContainer {
   margin-top: 1.5rem;
+  padding-left: 1.5rem;
   flex-grow: 1;
   overflow: auto;
   h2 {
     color: $black;
-    margin-left: 1.5rem;
   }
 }

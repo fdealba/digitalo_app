@@ -1,0 +1,33 @@
+@import '../css-variables/colors.scss';
+
+.TableStyle {
+  margin-bottom: .5rem;
+}
+
+.TableNavButton {
+  border-radius: 3px;
+  border: none;
+}
+
+
+.TableNavButton:not(:disabled) {
+  color: $white;
+  background: $primary;
+  box-shadow: 1px, 1px, 10px, rgba(0, 0, 0, .15);
+  &:hover {
+    background: rgba(22, 160, 251, .7);
+  }
+}
+
+.TableHeader {
+  
+}
+
+button.TableNavButton:focus,
+button.TableNavButton:active:focus,
+button.TableNavButton.active:focus,
+button.TableNavButton.focus,
+button.TableNavButton:active.focus,
+button.TableNavButton.active.focus {
+  outline: none !important;
+}
