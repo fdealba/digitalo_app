@@ -7,15 +7,14 @@
   p {
     margin: 0;
     padding: 0rem 1.5rem;
-    color: $black-text;
-    border-bottom: 3px solid $black-light-border-1;
-    color: $black-text;
+    border-bottom: 3px solid $white-link;
+    color: $white-link;
     letter-spacing: -.5px;
     cursor: pointer;
   }
   p:hover:not(.Active) {
-    border-bottom: 3px solid $black-light-border;
-    color: $black-text-hover;
+    border-bottom: 3px solid $white;
+    color: $white;
   }
 }
 

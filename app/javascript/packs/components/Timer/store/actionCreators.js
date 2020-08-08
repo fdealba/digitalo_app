@@ -30,9 +30,6 @@ export const stopBackendTimer = (state) => {
     axios.post('api/stop_timer', {
       ...state
     })
-      .then(response => {
-        console.log(response);
-      })
       .catch( error => {
         dispatch(fetchFailedTimer());
       })
@@ -56,7 +53,6 @@ export const initTimer = () => {
   return dispatch => {
     axios.get('api/load_timer')
       .then( response => {
-        console.log(response);
         dispatch(setTimer(response.data));
       })
       .catch( error => {

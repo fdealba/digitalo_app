@@ -1,14 +1,18 @@
 // Define variables for your color scheme
 
 // Base colors:
-$base-color: #24334A;
-$base-color-light-1: #2B3C58;
-$base-color-light-2: #344864;
-$base-color-light-3: #3E5678;
+$base-color: rgb(53, 54, 58);
+$base-color-light-1: rgba(53, 54, 58, .9);
+$base-color-light-2: rgba(53, 54, 58, .8);
+$base-color-light-3: rgba(53, 54, 58, .7);
+
+$dark-base: rgb(49,50,53);
+$dark-base-1: rgb(44, 45, 48);
 
 // Whites
-$white: rgba(255, 255, 255, .9);
-$white-link: rgba(255, 255, 255, .65);
+$white: rgb(238,238,238);
+$white-link: rgba(238, 238, 238, .85);
+$white-off-link: rgba(154, 154, 154, .85);
 $white-border: rgba(255, 255, 255, .15);
 
 //Blacks
@@ -24,8 +28,8 @@ $black-text-hover: rgba(0, 0, 0, .75);
 $blue-link: #16a0fb;
 
 // Colors
-$primary: #16a0fb;
+$primary: #2084c5;
 $secondary: #041D2E;
 $success: #59FA0A;
 $warning: #FA9C16;
-$danger: #FA312F;
+$danger: #712423;

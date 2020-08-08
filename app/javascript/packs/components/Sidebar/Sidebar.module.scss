@@ -4,14 +4,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color: $base-color;
   min-width: 300px;
   z-index: 10;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  box-shadow: 0px 3px 10px rgb(106, 106, 106);
+  box-shadow: 0px 3px 10px #2f2f2f;
   ul {
     list-style: none;
     margin: 0;
@@ -27,17 +27,15 @@
     a:not(.Active) {
       text-decoration: none;
       width: 100%;
-      color: #ebecef;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       background: $base-color-light-1;
-      border-top: 0.3px solid $base-color-light-1;
-      border-bottom: 0.3px solid $base-color-light-1;
       &:hover {
-        background: $base-color-light-2;
-        border-top: 0.3px solid $white-border;
-        border-bottom: 0.3px solid $white-border;
+        span, i {
+          color: $white;
+          text-shadow: 1px 1px 5px #1f1f1f;
+        }
       }
     }
     a:first-child {
@@ -46,9 +44,9 @@
     a span:not(.Active), i{
       font-weight: normal;
       text-decoration: none;
-      color: $white-link;
+      color: $white-off-link;
       margin-left: 1rem;
-    }  
+    }
   }
 }
 
@@ -57,9 +55,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 10px 0;
-  background: $base-color-light-3;
-  border-top: 0.3px solid $white-border;
-  border-bottom: 0.3px solid $white-border;
+  background: $dark-base-1;
   color: $white;
   span {
     color: $white !important;
@@ -79,20 +75,30 @@
 
 .ProfilePicture {
   border-radius: 50%;
-  margin: 4em 0;
-  width: 100px;
-  border: 2px solid $white;
+  margin: 1rem;
+  width: 40px;
+  border: 1px solid $white;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 .Logout {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   left: 10px;
   z-index: 11;
-  color: white;
+  color: $white;
 }
 .Logout:hover {
-  color: rgba(255, 255, 255, .7);
+  color: white;
   text-decoration: none;
+}
+
+.UserDataContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0;
+    color: $white;
+  }
 }

@@ -1,7 +1,8 @@
-// To reference this file, add <%= javascript_pack_tag 'App' %> to the appropriate
-
+// React
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+
+// Components
 import Dashboard from './views/Dashboard/Dashboard';
 import Alerts from './views/Alerts/Alerts';
 import Calendar from './views/Calendar/Calendar';
@@ -10,8 +11,15 @@ import Office from './views/Office/Office';
 import Tasks from './views/Tasks/Tasks';
 import Layout from './hoc/Layout/Layout';
 
+// Redux
+import * as appActions from './global-store/actionCreators';
+import { connect } from 'react-redux';
 
 class App extends Component {
+  componentDidMount () {
+    this.props.onFetchUserData();
+  }
+
   render () {
     return (
       <Layout>
@@ -28,4 +36,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchUserData: () => dispatch(appActions.onFetchUserData())
+  };
+}
+
+export default connect(null, mapDispatchToProps)(App);

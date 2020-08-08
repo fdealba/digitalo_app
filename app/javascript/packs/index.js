@@ -10,7 +10,8 @@ import thunk from 'redux-thunk';
 
 // Reducers
 import timerReducer from './components/Timer/store/reducer';
-import dashboardReducer from './views/Dashboard/store/reducer'
+import dashboardReducer from './views/Dashboard/store/reducer';
+import appReducer from './global-store/reducer';
 
 // Axios
 import axios from 'axios';
@@ -22,7 +23,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   timer: timerReducer,
-  dashboard: dashboardReducer
+  dashboard: dashboardReducer,
+  app: appReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

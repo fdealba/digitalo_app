@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
-  Sidebar, Logo, ProfilePicture, Active, Logout
+  Sidebar,
+  Logo,
+  ProfilePicture,
+  UserDataContainer,
+  Active,
+  Logout
 } from './Sidebar.module.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink
-} from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import Timer from '../Timer/Timer';
+
 import logo from 'images/logo/white-logo.svg';
 import profilePictureExample from 'images/test-pics/profile-picture.jpg';
-import Timer from '../Timer/Timer';
 
 const ICONS = {
   dashboard: 'dashboard',
@@ -32,9 +35,8 @@ const LINKS = {
 
 const NAVLINKS = ['dashboard', 'tasks', 'calendar', 'office', 'time', 'alerts'];
 
-const sidebar = ({
-  profilePicture
-}) => { 
+const sidebar = () => {
+  const user = useSelector(state => state.app.user);
 
   const links = NAVLINKS.map(link => {
     return (
@@ -57,19 +59,24 @@ const sidebar = ({
     <img src={logo} className={Logo} alt="Logo"/>
   );
 
-  const userProfilePicture = (
-    <img src={profilePictureExample} className={ProfilePicture} alt="User Picture"/>
+  const userData = (
+    <div className={UserDataContainer}>
+      <img src={profilePictureExample} className={ProfilePicture} alt="User Picture"/>
+      <p>{user ? user.name + ' ' + user.last_name  : ''}</p>
+    </div>
   );
 
   const html = (
     <div className={Sidebar}>
-      {userProfilePicture}
       <ul>
+        {userData}
         {links}
       </ul>
-      <Timer/>
-      {logout}
-      {businessLogo}
+      <div>
+        <Timer/>
+        {logout}
+        {businessLogo}
+      </div>
     </div>
   );
 
