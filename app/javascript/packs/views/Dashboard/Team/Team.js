@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { } from './Team.module.scss';
+
+// Components
 import MainStats from '../../../components/MainStats/MainStats';
 
 class Team extends Component {
