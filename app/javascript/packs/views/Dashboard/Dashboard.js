@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { DashboardContainer } from './Dashboard.module.scss';
+
+// Components
 import Nav from '../../components/Nav/Nav';
 import Team from './Team/Team';
 import Me from './Me/Me';
